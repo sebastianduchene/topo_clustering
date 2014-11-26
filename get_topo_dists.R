@@ -8,8 +8,6 @@ for(i in dir('functions', pattern = 'R$')){
 
 cat('starting get topo\n')
 
-get_topo_dist(tree_file_name = 'collapsed_20_brs.trees', out_file_name = 'collapsed_20_brs_tdist.txt', n_clusters = 10)
+#get_topo_dist(tree_file_name = 'collapsed_21_brs.trees', out_file_name = 'collapsed_21_brs_tdist.txt', n_clusters = 10)
 
-get_topo_dist(tree_file_name = 'collapsed_10_brs.trees', out_file_name = 'collapsed_10_brs_tdist.txt', n_clusters = 10)
-
-get_topo_dist(tree_file_name = 'collapsed_5_brs.trees', out_file_name = 'collapsed_5_brs_tdist.txt', n_clusters = 10)
+get_topo_dist(tree_file_name = 'collapsed_52_brs.trees', out_file_name = 'collapsed_52_brs_tdist.txt', n_clusters = 5)

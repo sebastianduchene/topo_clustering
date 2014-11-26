@@ -7,7 +7,7 @@ for(i in dir('functions', pattern = 'R$')){
   source(paste0('functions/', i))
 }
 
-fasta_files <- paste0('remove_pandinas/', grep('.FASTA$', dir('remove_pandinas'), value = T))
+fasta_files <- paste0('~/Desktop/phyt_infestans/remove_pandinas/', grep('.FASTA$', dir('~/Desktop/phyt_infestans/remove_pandinas'), value = T))
 get_nj_tree <- function(fasta_file, max_0_br = 10){
   f_temp <- ape::read.dna(fasta_file, format = 'fasta')
   di_temp <- phangorn::dist.hamming(phangorn::phyDat(f_temp))
@@ -19,44 +19,27 @@ get_nj_tree <- function(fasta_file, max_0_br = 10){
 }
 
 ###########################
-# Estimate collapsed trees for a maximum of 20 branches with length of 0
+# Estimate collapsed trees for a maximum of 21 branches with length of 0 (20%)
 cl <- makeCluster(15)
 registerDoParallel(cl)
-poly_trees_20 <- foreach(i = 1:length(fasta_files), .combine = c) %dopar% list(get_nj_tree(fasta_files[i], max_0_br = 20))
+poly_trees_21 <- foreach(i = 1:length(fasta_files), .combine = c) %dopar% list(get_nj_tree(fasta_files[i], max_0_br = 21))
 stopCluster(cl)
-rem_20 <- sapply(1:length(poly_trees_20), function(x) !is.null(poly_trees_20[[x]]))
-poly_trees_20 <- poly_trees_20[rem_20]
+rem_21 <- sapply(1:length(poly_trees_21), function(x) !is.null(poly_trees_21[[x]]))
+poly_trees_21 <- poly_trees_21[rem_21]
 
-for(i in 1:length(poly_trees_20)){
-  write.tree(poly_trees_20[[i]][[2]], file = 'collapsed_20_brs.trees', tree.names = gsub('^([a-z]|_|)+/', '', poly_trees_20[[i]][[1]]), append = TRUE)
+for(i in 1:length(poly_trees_21)){
+  write.tree(poly_trees_21[[i]][[2]], file = 'collapsed_21_brs.trees', tree.names = gsub('^([a-z]|_|)+/', '', poly_trees_21[[i]][[1]]), append = TRUE)
 }
 
 ###########################
-# Estimate collapsed trees for a maximum of 10 branches with length of 0
+# Estimate collapsed trees for a maximum of 52 branches with length of 0 (50%)
 cl <- makeCluster(15)
 registerDoParallel(cl)
-poly_trees_10 <- foreach(i = 1:length(fasta_files), .combine = c) %dopar% list(get_nj_tree(fasta_files[i], max_0_br = 10))
+poly_trees_52 <- foreach(i = 1:length(fasta_files), .combine = c) %dopar% list(get_nj_tree(fasta_files[i], max_0_br = 52))
 stopCluster(cl)
-rem_10 <- sapply(1:length(poly_trees_10), function(x) !is.null(poly_trees_10[[x]]))
-poly_trees_10 <- poly_trees_10[rem_10]
+rem_52 <- sapply(1:length(poly_trees_52), function(x) !is.null(poly_trees_52[[x]]))
+poly_trees_52 <- poly_trees_52[rem_52]
 
-for(i in 1:length(poly_trees_10)){
-  write.tree(poly_trees_10[[i]][[2]], file = 'collapsed_10_brs.trees', tree.names = gsub('^([a-z]|_|)+/', '', poly_trees_10[[i]][[1]]), append = TRUE)
+for(i in 1:length(poly_trees_52)){
+  write.tree(poly_trees_52[[i]][[2]], file = 'collapsed_52_brs.trees', tree.names = gsub('^([a-z]|_|)+/', '', poly_trees_52[[i]][[1]]), append = TRUE)
 }
-
-############################
-# Estimate collapsed trees for a maximum of 5 branches with length of 0
-cl <- makeCluster(15)
-registerDoParallel(cl)
-poly_trees_5 <- foreach(i = 1:length(fasta_files), .combine = c) %dopar% list(get_nj_tree(fasta_files[i], max_0_br = 5))
-stopCluster(cl)
-rem_5 <- sapply(1:length(poly_trees_5), function(x) !is.null(poly_trees_5[[x]]))
-poly_trees_5 <- poly_trees_5[rem_5]
-
-for(i in 1:length(poly_trees_5)){
-  write.tree(poly_trees_5[[i]][[2]], file = 'collapsed_5_brs.trees', tree.names = gsub('^([a-z]|_|)+/', '', poly_trees_5[[i]][[1]]), append = TRUE)
-}
-
-
-
-
