@@ -12,7 +12,7 @@ optim_clusters_topo <- function(topo_mat_file, out_mds_file = 'mds_topo.txt', n_
 
   dat_dist <- as.dist(dat_raw)
   mds_dat <- cmdscale(dat_dist, k = 3)
-  rm(dat_dist)
+  rm(list = c('dat_dist', 'dat_raw'))
   write.table(mds_dat, file = out_mds_file, row.names = T)
 cat('Loaded data and preparing for clustering\n')
   ### functions

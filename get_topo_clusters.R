@@ -28,15 +28,7 @@ read_dist_matrix <- function(f_name){
 
 
 #dist21 <- read_dist_matrix('collapsed_21_brs_tdist.txt')
-mds21 <- optim_clusters_topo('collapsed_21_brs_tdist.txt', n_clusters = 4, kmax = 100, b_reps = 50, out_cluster_id = 'opt_topo_21.txt', out_clus_info = 'clusinfo_21.txt', plot_clustering = T)
+mds52 <- optim_clusters_topo('collapsed_52_brs_tdist.txt', n_clusters = 10, kmax = 100, b_reps = 50, out_cluster_id = 'opt_topo_52.txt', out_clus_info = 'clusinfo_52.txt', plot_clustering = T)
 
 
 
-#dist20 <- read_dist_matrix('collapsed_20_brs_tdist.txt')
-#mds20 <- optim_clusters_topo('collapsed_20_brs_tdist.txt', n_clusters = 10, kmax = 100, b_reps = 50, out_cluster_id = 'opt_topo_20.txt', out_clus_info = 'clusinfo_20.txt', plot_clustering = T)
-
-#dist10 <- read_dist_matrix('collapsed_10_brs_tdist.txt')
-#mds10 <- optim_clusters_topo('collapsed_10_brs_tdist.txt', n_clusters = 10, kmax = 100, b_reps = 50, out_cluster_id = 'opt_topo_10.txt', out_clus_info = 'clusinfo_10.txt', plot_clustering = T)
-
-#dist5 <- read_dist_matrix('collapsed_5_brs_tdist.txt')
-#mds10 <- optim_clusters_topo('collapsed_5_brs_tdist.txt', n_clusters = 10, kmax = 100, b_reps = 50, out_cluster_id = 'opt_topo_5.txt', out_clus_info = 'clusinfo_5.txt', plot_clustering = T)
